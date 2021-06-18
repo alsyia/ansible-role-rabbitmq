@@ -5,7 +5,8 @@
 - name: enable offline plugins
   include: plugins.yml
   vars:
-    _rabbitmq_plugins: "{{ rabbitmq_offline_plugins }}"
+    _rabbitmq_plugins: "{{ rabbitmq_offline_plugins }}"
+  when: rabbitmq_offline_plugins | length > 0
 
 - include: configure.yml
 
@@ -21,7 +22,8 @@
 - name: enable online plugins
   include: plugins.yml
   vars:
-    _rabbitmq_plugins: "{{ rabbitmq_online_plugins }}"
+    _rabbitmq_plugins: "{{ rabbitmq_online_plugins }}"
+  when: rabbitmq_online_plugins | length > 0
 
 - include: cluster.yml
 
